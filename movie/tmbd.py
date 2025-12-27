@@ -1,6 +1,5 @@
 import requests
 from .models import Movie
-
 from django.conf import settings
 
 TMDB_TOKEN = settings.TMDB_TOKEN
@@ -17,7 +16,7 @@ def fetch_and_save_movies():
     genre_data = genre_response.json()
     genre_map = {g["id"]: g["name"] for g in genre_data["genres"]}
 
-    for page in range(1,32):
+    for page in range(1,6):
          movie_url = f"https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&page={page}"
          movie_response = requests.get(movie_url, headers=headers)
          movie_data = movie_response.json()

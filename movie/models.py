@@ -15,10 +15,10 @@ class Movie(models.Model):
 
 
 class Like(models.Model):
-    users = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     movie =  models.ForeignKey(Movie,on_delete=models.CASCADE)
 
 class Comment(models.Model):
-    users = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     movie =  models.ForeignKey(Movie,on_delete=models.CASCADE)
     Comment = models.TextField()
