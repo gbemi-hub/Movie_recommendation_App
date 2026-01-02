@@ -5,19 +5,17 @@ from .views import (
     UnlikeMovieView,
     CommentCreateView,
     CommentUpdateView,
-    CommentDeleteView
+    CommentDeleteView,
+    GenreRecommendationView
 )
 
 urlpatterns = [
-    # Movies
     path("movies/", MovieListView.as_view(), name="movie-list"),
-
-    # Likes for movies
+    path("movies/genre/<str:genre>/", GenreRecommendationView.as_view(), name="genre-recommendation"),  # recommendations
     path("movies/<int:movie_id>/like/", LikeMovieView.as_view(), name="like-movie"),
     path("movies/<int:movie_id>/unlike/", UnlikeMovieView.as_view(), name="unlike-movie"),
-
-    # Comments
     path("movies/<int:movie_id>/comments/", CommentCreateView.as_view(), name="create-comment"),
-    path("comments/<int:comment_id>/update/", CommentUpdateView.as_view(), name="update-comment"),
+    path("comments/<int:comment_id>/", CommentUpdateView.as_view(), name="update-comment"),
     path("comments/<int:comment_id>/delete/", CommentDeleteView.as_view(), name="delete-comment"),
 ]
+

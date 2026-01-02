@@ -11,11 +11,13 @@ class MovieSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ["id", "users", "movie", "comment"]
+        fields = ["id", "user", "movie", "Comment" ,"created_at" ,"updated_at"]
+        read_only_fields = ["user" , "movie"]
+        
 
 
 class NestedCommentSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)  # shows username instead of ID
+    user = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Comment
@@ -25,7 +27,8 @@ class NestedCommentSerializer(serializers.ModelSerializer):
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
-        fields = ["id", "users", "movie"]
+        fields = ["id", "user", "movie"]
+        read_only_fields = ["user" , "movie"]
 
 
 class RecommendationMovieSerializer(serializers.ModelSerializer):

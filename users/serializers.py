@@ -1,29 +1,30 @@
 from rest_framework import serializers
 from . models import User
-from rest_framework .authtoken.models import Token
+from rest_framework.authtoken.models import Token
 
 
 
-class Registration(serializers.ModelSerializer):
-    password = serializers.CharField(write_only = True)
+class RegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields=["id","username","email" ,"password"]
+        fields = ["id", "username", "email", "password"]
 
     def create(self, validated_data):
-            user = User.objects.create_user(
-                 username = validated_data["username"],
-                 email = validated_data["email"],
-                 password = validated_data["password"],
-            )
-       Token.objects.create = (user=user)
+        user = User.objects.create_user(
+            username=validated_data["username"],
+            email=validated_data["email"],
+            password=validated_data["password"],
+        )
 
-       return user
+        Token.objects.create(user=user)
 
-class Login(serializers.ModelSerializer):
+        return user
+
+class Loginserializers(serializers.ModelSerializer):
     usename = serializers.CharField()
-    password = password = serializers.Charfield(write_only = True)
+    password = password = serializers.CharField(write_only = True)
 
     def validate(self, data):
         user = authenticate(**data)
