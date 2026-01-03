@@ -39,3 +39,5 @@ A **Django REST Framework** project that allows users to explore movies, like/un
 ---
 
 This API is fully token-protected, so only authenticated users can like, comment, or access recommendations.
+
+preview:https://gbemi123.pythonanywhere.com/
